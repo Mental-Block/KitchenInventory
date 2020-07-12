@@ -1,14 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router } from "react-router-dom";
 
-//global rest
 import "normalize.css";
-import GlobalStyle from "./globalStyle";
-import defaultTheme from "./theme";
-
-import { Navigation, Footer } from "./template";
-import * as Pages from "./pages";
+import defaultTheme from "./css/theme";
+import GlobalStyle from "./css/globalStyle";
+import { ThemeProvider } from "styled-components";
+import { Navigation, PageRoutes, Footer } from "./template";
 
 export default function App() {
   return (
@@ -17,11 +14,7 @@ export default function App() {
         <GlobalStyle />
         <Router>
           <Navigation />
-          <Switch>
-            <Route exact path="/" component={Pages.Home} />
-            <Route exact path="/login" component={Pages.Login} />
-            <Route exact path="/register" component={Pages.Register} />
-          </Switch>
+          <PageRoutes />
           <Footer />
         </Router>
       </ThemeProvider>

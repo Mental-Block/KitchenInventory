@@ -16,6 +16,14 @@ module.exports = {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ["file-loader"],
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: "url-loader",
+      },
     ],
   },
   output: { filename: "bundle.js" },
