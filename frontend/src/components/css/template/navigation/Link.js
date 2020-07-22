@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledNavLink = styled(NavLink)`
   color: ${(props) => props.theme.black};
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   padding-top: 3px;
   margin: 1rem 0;
 

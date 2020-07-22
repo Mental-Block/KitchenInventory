@@ -4,8 +4,7 @@ const Background = styled.div`
   position: relative;
   background: url(${(props) => props.url}) no-repeat center center;
   background-size: cover;
-  zoom: 0.75;
-  padding: 4em 2em;
+  zoom: 1;
 
   ::after {
     position: absolute;

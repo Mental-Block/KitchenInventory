@@ -5,23 +5,26 @@ import Container from "./Container";
 import Header from "./Header";
 import SubHeader from "./SubHeader";
 
-import { GreenButton } from "../Button";
+import { GreenButtonLink } from "../../../reusables/link";
 
 export default function HeroBanner({
   ImageURL,
   HeaderText,
   SubHeaderText,
   ButtonText,
+  PageURL,
 }) {
   return (
-    <>
-      <Background url={ImageURL}>
+    <Background url={ImageURL}>
+      <div className={"innerWrapper"}>
         <Container>
           <Header>{HeaderText}</Header>
           <SubHeader>{SubHeaderText}</SubHeader>
-          <GreenButton>{ButtonText}</GreenButton>
+          <GreenButtonLink fontSize="1.2rem" to={PageURL}>
+            {ButtonText}
+          </GreenButtonLink>
         </Container>
-      </Background>
-    </>
+      </div>
+    </Background>
   );
 }

@@ -13,10 +13,10 @@ const Menu = () => {
     return () => window.removeEventListener("resize", forceMenuOpen);
   }, [toggleValue]);
 
-  function forceMenuOpen() {
+  const forceMenuOpen = () => {
     if (window.innerWidth >= parseInt(sizes.tablet) && toggleValue === false)
       toggle(!toggleValue);
-  }
+  };
 
   return (
     <>

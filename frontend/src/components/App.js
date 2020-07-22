@@ -2,9 +2,12 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import "normalize.css";
-import defaultTheme from "./css/theme";
 import GlobalStyle from "./css/globalStyle";
+import RootWrapper from "./css/layout/RootWrapper";
+
 import { ThemeProvider } from "styled-components";
+import defaultTheme from "./css/theme";
+
 import { Navigation, PageRoutes, Footer } from "./template";
 
 export default function App() {
@@ -13,9 +16,11 @@ export default function App() {
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
         <Router>
-          <Navigation />
-          <PageRoutes />
-          <Footer />
+          <RootWrapper>
+            <Navigation />
+            <PageRoutes />
+            <Footer />
+          </RootWrapper>
         </Router>
       </ThemeProvider>
     </>

@@ -1,5 +1,5 @@
 const flex = `
-    display: flex;
+  display: flex;
 `;
 
 export default flex;

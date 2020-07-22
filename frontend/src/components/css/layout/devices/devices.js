@@ -8,7 +8,6 @@ const devices = {
   laptop: `(min-width: ${sizes.laptop})`,
   laptopL: `(min-width: ${sizes.laptopL})`,
   desktop: `(min-width: ${sizes.desktop})`,
-  desktopL: `(min-width: ${sizes.desktop})`,
 };
 
 export default devices;

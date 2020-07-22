@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { AnimationWrapper, RoutesWrapper } from "../css/template/pageRoutes";
-import * as Pages from "./pages";
+import * as Pages from "../pages";
 
 function PageRoutes({ location }) {
   return (

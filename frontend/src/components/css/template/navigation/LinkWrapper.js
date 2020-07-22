@@ -10,7 +10,7 @@ import {
 const LinkWrapper = styled.div`
   position: absolute;
   padding: 2rem 0;
-  bottom: -288px;
+  bottom: -312px;
   left: 0px;
   right: 0px;
   width: 100%;
