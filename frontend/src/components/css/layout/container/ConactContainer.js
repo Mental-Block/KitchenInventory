@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { flex } from "../flex";
 
 const Container = styled.div`
-  position: relative;
-  z-index: 1;
+  min-height: inherit;
+  ${flex}
 `;
 
 export default Container;

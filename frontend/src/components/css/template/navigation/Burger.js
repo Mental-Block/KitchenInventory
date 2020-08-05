@@ -3,7 +3,6 @@ import { devices } from "../../layout/devices";
 
 const StyledBurger = styled.div`
   cursor: pointer;
-  margin-right: 0.5rem;
   height: auto;
   width: auto;
   padding: 0.5rem;

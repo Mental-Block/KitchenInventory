@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/Mental-Block/kitchenInventory/issues"
   },
-  "homepage": "https://github.com/Mental-Block/kitchenInventory#readme"
+  "homepage": "https://github.com/Mental-Block/kitchenInventory#readme",
+  "dependencies": {}
 }

@@ -5,6 +5,7 @@ const Background = styled.div`
   background: url(${(props) => props.url}) no-repeat center center;
   background-size: cover;
   zoom: 1;
+  min-height: ${(props) => (props.minHeight ? props.minHeight : "auto")};
 
   ::after {
     position: absolute;
@@ -13,8 +14,14 @@ const Background = styled.div`
     width: 100%;
     height: 100%;
     content: "";
-    background: ${(props) => props.theme.black};
+    background: ${(props) =>
+      props.overlay ? (props) => props.theme.black : "none"};
     opacity: 0.4;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
   }
 `;
 

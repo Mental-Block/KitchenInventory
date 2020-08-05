@@ -7,8 +7,6 @@ export const cssGreenButton = css`
   color: ${(props) => props.theme.white};
   background-color: ${(props) => props.theme.green};
   border: 2px solid ${(props) => props.theme.greenOff};
-  font-size: ${(props) =>
-    props.fontSize ? (props) => props.fontSize : "1rem"};;
   box-shadow:none;
 
 

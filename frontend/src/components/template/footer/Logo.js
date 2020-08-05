@@ -1,5 +1,7 @@
 import React from "react";
-import { NavLink as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import { StyledLogo } from "../../css/template/footer";
 
 const Logo = () => {
   return (
@@ -9,7 +11,7 @@ const Logo = () => {
         window.scrollTo(0, 0);
       }}
     >
-      <img src="/images/Logo.svg" />
+      <StyledLogo src="./images/InvertedLogo.svg" />
     </Link>
   );
 };

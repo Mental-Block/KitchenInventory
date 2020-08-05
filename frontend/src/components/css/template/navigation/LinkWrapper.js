@@ -22,15 +22,23 @@ const LinkWrapper = styled.div`
   ${flexCenterCenter};
   ${flexColumn};
 
+  a {
+    margin: 1rem 0;
+  }
+
   @media ${devices.tablet} {
     opacity: initial;
     position: initial;
     visibility: initial;
     width: 360px;
-    margin-right: 0.8rem;
+    padding: 0;
     background: none;
     ${flexRow};
     ${flexSpace};
+
+    a {
+      margin: 0;
+    }
   }
 `;
 

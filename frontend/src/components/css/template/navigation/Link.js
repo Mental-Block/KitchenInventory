@@ -7,7 +7,6 @@ const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   font-weight: 700;
   padding-top: 3px;
-  margin: 1rem 0;
 
   ::after {
     content: "";

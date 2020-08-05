@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import "normalize.css";
 import GlobalStyle from "./css/globalStyle";
-import RootWrapper from "./css/layout/RootWrapper";
+import { RootWrapper } from "./css/layout/wrapper";
 
 import { ThemeProvider } from "styled-components";
 import defaultTheme from "./css/theme";

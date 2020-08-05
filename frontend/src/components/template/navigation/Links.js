@@ -27,15 +27,31 @@ const Links = ({ toggleValue }) => {
     <>
       <StyledLinkWrapper toggleValue={toggleValue}>
         {URL.map((url, i) => {
-          if (url.path === "/register")
+          if (url.path === "/register") {
             return (
-              <GreenButtonLink key={i} exact="true" to={url.path}>
+              <GreenButtonLink
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+                key={i}
+                exact="true"
+                to={url.path}
+              >
                 {url.title}
               </GreenButtonLink>
             );
+          }
 
           return (
-            <StyledLink key={i} exact activeClassName={"active"} to={url.path}>
+            <StyledLink
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+              key={i}
+              exact
+              activeClassName={"active"}
+              to={url.path}
+            >
               {url.title}
             </StyledLink>
           );

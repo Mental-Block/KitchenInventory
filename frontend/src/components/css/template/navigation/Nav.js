@@ -8,8 +8,7 @@ const Nav = styled.nav`
   left: 0;
   bottom: 0;
   right: 0;
-  height: 60px;
-  padding: 0.8rem;
+  padding: 0.6rem 0.8rem;
   background-color: ${(props) => props.theme.white};
   background: linear-gradient(
     ${(props) => props.theme.white} 20%,

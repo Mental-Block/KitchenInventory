@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",
@@ -23,9 +24,11 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@hookform/error-message": "0.0.3",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.3.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",

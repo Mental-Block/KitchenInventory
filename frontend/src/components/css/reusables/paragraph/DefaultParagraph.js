@@ -5,7 +5,7 @@ const Paragraph = styled.p`
   font-weight: bold;
   color: ${(props) => props.theme.black};
   line-height: 1.8rem;
-  margin-top: 0;
+  margin: 1em 0;
 `;
 
 export default Paragraph;

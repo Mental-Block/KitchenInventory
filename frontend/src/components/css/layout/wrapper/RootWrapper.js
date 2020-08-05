@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { sizes } from "./devices";
+import { sizes } from "../devices";
 
 const RootWrapper = styled.div`
   max-width: ${sizes.desktop};
