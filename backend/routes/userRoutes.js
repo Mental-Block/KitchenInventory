@@ -6,40 +6,40 @@ const User = require("../models/userModel");
 
 router.post("/register", async (req, res) => {
   try {
-    const PASSWORDLENGTH = 5;
-    let { email, password, passwordCheck, displayName } = req.body;
+    let { registerEmail, registerPassword, confirmPassword, registerDisplayName } = req.body;
 
-    if (!email || !password || !passwordCheck)
-      return res
-        .status(400)
-        .json({ message: "Not all fields have been entered." });
-    if (password.length < PASSWORDLENGTH)
-      return res
-        .status(400)
-        .json({ message: "Password needs to be at least 5 characters long." });
-    if (password !== passwordCheck)
-      return res
-        .status(400)
-        .json({ message: "enter in the same password twice." });
+    if (!registerEmail || !registerPassword || !confirmPassword)
+      return res.status(400).json({
+        name: ["registerEmail", "registerPassword", "confirmPassword"],
+        message: "Not all fields have been entered.",
+      });
 
-    const existingUser = await User.findOne({ email: email });
+    if (!registerPassword.match(/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/))
+      return res.status(400).json({
+        name: "registerPassword",
+        message: "Password must contain at least 1 letter, at least 1 number, and be longer than 8 characters",
+      });
 
-    if (existingUser)
-      return res.status(400).json({ message: "this email already exists." });
+    if (registerPassword !== confirmPassword)
+      return res.status(400).json({ name: "confirmPassword", message: "passwords don't match" });
 
-    if (!displayName) displayName = "User";
+    const existingUser = await User.findOne({ email: registerEmail });
+
+    if (existingUser) return res.status(400).json({ name: "registerEmail", message: "this email already exists." });
+
+    if (!registerDisplayName) registerDisplayName = "User";
 
     const salt = await bcrypt.genSalt();
-    const hashPassword = await bcrypt.hash(password, salt);
+    const hashPassword = await bcrypt.hash(registerPassword, salt);
 
     const newUser = new User({
-      email,
+      email: registerEmail,
       password: hashPassword,
-      displayName,
+      displayName: registerDisplayName,
     });
 
-    const savedUser = await newUser.save();
-    res.json(savedUser);
+    await newUser.save();
+    return res.json("Thanks for signing up!");
   } catch (error) {
     res.status(500).json({ err: error.message });
   }
@@ -47,31 +47,56 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { loginEmail, loginPassword } = req.body;
 
-    if (!email || !password)
-      return res
-        .status(400)
-        .json({ message: "Not all fields have been entered." });
+    if (!loginEmail || !loginPassword)
+      return res.status(400).json({
+        name: ["loginEmail", "loginPassword"],
+        message: "Not all fields have been entered.",
+      });
 
-    const user = await User.find({ email: email });
-    const isMatch = await bcrypt.compare(password, user.password);
+    const user = await User.findOne({ email: loginEmail });
 
-    if (!isMatch || !user)
-      return res
-        .status(400)
-        .json({ message: "Username or password is incorrect" });
+    if (!user)
+      return res.status(400).json({
+        name: ["loginEmail", "loginPassword"],
+        message: "Email or password is incorrect",
+      });
+
+    const isMatch = await bcrypt.compare(loginPassword, user.password);
+
+    if (!isMatch)
+      return res.status(400).json({
+        name: ["loginEmail", "loginPassword"],
+        message: "Email or password is incorrect",
+      });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
-    res.json({
+    return res.json({
       token,
       user: {
         id: user._id,
         displayName: user.displayName,
-        email: user.email,
       },
     });
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
+});
+
+router.post("/tokenIsValid", async (req, res) => {
+  try {
+    const token = req.header("x-auth-token");
+    if (!token) return res.json(false);
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.json(false);
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.json(false);
+
+    return res.status(200).json(true);
   } catch (error) {
     res.status(500).json({ err: error.message });
   }
@@ -86,13 +111,16 @@ router.delete("/delete", auth, async (req, res) => {
   }
 });
 
-router.post("/tokenIsValid", async (req, res) => {
-  const token = req.header("x-auth-token");
-  const verified = jwt.verify(token, process.env.JWT_SECRET);
-  const user = await User.findById(verified._id);
-
-  if (!verified || !token || !user) return res.json(false);
-  return res.json(true);
+router.get("/user", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user);
+    return res.json({
+      displayName: user.displayName,
+      id: user._id,
+    });
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
 });
 
 module.exports = router;
