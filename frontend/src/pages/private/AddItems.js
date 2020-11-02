@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router"
 import { useForm } from "react-hook-form";
 
 import Prompt from "../shared/Prompt";
@@ -18,6 +19,9 @@ import {
 } from "root/css";
 
 export default function AddItems({ userData }) {
+  const history = useHistory()
+  const methods = useForm({ validateCriteriaMode: "all" });
+  const { register, setError } = methods;
   const [unitValue, toggleUnit] = useState(false);
   const [categoryValue, toggleCategory] = useState(false);
   const [reloadValue, toggleReload] = useState(false);
@@ -42,9 +46,7 @@ export default function AddItems({ userData }) {
     return { data, loading };
   })();
 
-  const methods = useForm({ validateCriteriaMode: "all" });
-  const { register, setError } = methods;
-
+  
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
@@ -63,7 +65,7 @@ export default function AddItems({ userData }) {
     });
 
     if (response.message) setErrorMessage(setError, { ...response })
-    else console.log(response)
+    else history.push("viewall");
   };
 
   return (
@@ -80,7 +82,7 @@ export default function AddItems({ userData }) {
               message: "Subject can't exceed max length of 20 characters",
             },
             pattern: {
-              value: /^[A-Za-z]+$/,
+              value: /^[A-Z a-z]+$/,
               message: "Characters only please",
             },
           })}
@@ -96,7 +98,6 @@ export default function AddItems({ userData }) {
           name="addImage"
           accept="image/png, image/jpg, image/jpeg"
           type="file"
-
         />
 
         <Input

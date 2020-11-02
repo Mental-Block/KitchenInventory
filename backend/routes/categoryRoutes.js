@@ -23,7 +23,7 @@ router.post("/add", auth, async (req, res) => {
 router.get("/all", auth, async (req, res) => {
   try {
     const categories = await Category.find({ userId: req.user });
-    const categoryNames = categories.map(({ categoryName, _id }) => ({ name: categoryName,  id:_id }));
+    const categoryNames = categories.map(({ categoryName, _id }) => ({ name: categoryName,  _id:_id }));
     return res.status(200).json(categoryNames);
   } catch (error) {
     return res.status(500).json({ err: { err: error.message } });

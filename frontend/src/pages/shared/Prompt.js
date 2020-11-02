@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import {useForm} from "react-hook-form";
 
 import {Form, Input} from "../shared/form"
 
@@ -18,8 +19,8 @@ import {
 
 export default function Prompt({ displayPrompt, message, reload, url, input}) {
   const { userData } = useContext(UserContext);
-  // const methods = useForm();
-  // const { register, setError } = methods;
+  const methods = useForm();
+  const { register, setError } = methods;
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
@@ -33,15 +34,15 @@ export default function Prompt({ displayPrompt, message, reload, url, input}) {
       body: JSON.stringify(data),
     });
 
-    // if (response.message) setErrorMessage(setError, { ...response });
-    // else {displayPrompt(false); reload(true); }
+    if (response.message) setErrorMessage(setError, { ...response });
+    else {displayPrompt(false); reload(true); }
   };
 
   return (
     <>
       <StyledOverlayBackground>
         <StyledPageWrapper>
-          <Form defaultValues={{ validateCriteriaMode: "all" }} onSubmit={onSubmit} methods={methods}>
+          <Form onSubmit={onSubmit} methods={methods}>
             <StyledParagraph>{message}</StyledParagraph>
              <Input
                   register={register({
@@ -61,10 +62,8 @@ export default function Prompt({ displayPrompt, message, reload, url, input}) {
                   {...input}
                 />
                 <StyledSpaceBetween>
-                <StyledGreenButton as="input" value="Add +" type="submit" />
-                <StyledRedButton value="" type="button" onClick={() => displayPrompt(false)}>
-                    Never mind
-                </StyledRedButton>
+                  <StyledGreenButton as="input" value="Add +" type="submit" />
+                  <StyledRedButton as="input" type="button" value="Never mind" type="button" onClick={() => displayPrompt(false)}/>
               </StyledSpaceBetween>
            </Form>     
         </StyledPageWrapper>

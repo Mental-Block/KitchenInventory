@@ -23,7 +23,7 @@ router.post("/add", auth, async (req, res) => {
 router.get("/all", auth, async (req, res) => {
   try {
     const units = await Unit.find({ userId: req.user });
-    const unitNames = units.map(({ unitName }) => ({ name: unitName }));
+    const unitNames = units.map(({ unitName, _id }) => ({ name: unitName, _id: _id }));
 
     return res.status(200).json(unitNames);
   } catch (error) {

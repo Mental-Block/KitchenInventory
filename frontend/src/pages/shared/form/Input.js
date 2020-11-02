@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { StyledFormControl, StyledLabel, StyledInput } from "root/css";
+import ErrorMessage from "./ErrorMessage";
 
 export default function Input({ register, name, label, children, ...rest }) { 
   const {clearErrors} = useFormContext();
@@ -15,7 +16,8 @@ export default function Input({ register, name, label, children, ...rest }) {
           ref={register}
           {...rest}> 
           {children}
-          </StyledInput>
+        </StyledInput>
+        <ErrorMessage name={name}/>
       </StyledFormControl>
     </>
   );
