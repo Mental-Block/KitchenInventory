@@ -22,9 +22,10 @@ export default function AddItems({ userData }) {
   const history = useHistory()
   const methods = useForm({ validateCriteriaMode: "all" });
   const { register, setError } = methods;
+  
+  const [reloadValue, toggleReload] = useState(false);
   const [unitValue, toggleUnit] = useState(false);
   const [categoryValue, toggleCategory] = useState(false);
-  const [reloadValue, toggleReload] = useState(false);
 
   const unit = (() => {
     const { data, loading } = useFetch(

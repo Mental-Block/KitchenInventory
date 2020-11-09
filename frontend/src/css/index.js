@@ -4,7 +4,7 @@ export { StyledGreenButton, StyledRedButton } from "./button";
 export { StyledWhiteHeader, StyledWhiteSubHeader, StyledHeader } from "./header";
 export { StyledParagraph, StyledLoginParagraph } from "./paragraph";
 export { StyledPageAnimation, StyledFadeAnimation } from "./animation";
-export { StyledGreenLink } from "./link";
+export { StyledGreenLink, StyledRedLink } from "./link";
 
 export { StyledImageBackground, StyledAltBackground, StyledOverlayBackground } from "./background";
 
@@ -30,3 +30,5 @@ export {
   StyledSidebarMenu,
   StyledX,
 } from "./layout";
+
+export {StyledCard, StyledCardGrid} from "./card"

@@ -13,7 +13,7 @@ import { useHistory } from "react-router";
 
 export default function Register() {
   const { setUserData } = useContext(UserContext);
-  const { push } = useHistory();
+  const history = useHistory();
 
   const methods = useForm({ validateCriteriaMode: "all" });
   const { register, setError, watch } = methods;
@@ -41,7 +41,7 @@ export default function Register() {
 
       setUserData({ token: user.token, user: user.user });
       localStorage.setItem("auth-token", user.token);
-      push(`/user/${user.user.id}`);
+      history.push(`/user/${user.user.id}`);
     }
   };
 

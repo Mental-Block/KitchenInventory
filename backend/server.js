@@ -31,6 +31,15 @@ mongoose.connect(
   }
 );
 
+app.get("/images/:fileName", async (req, res) => {
+  try {
+    const { fileName } = req.params;
+    return res.status(200).sendFile(__dirname + /images/ + fileName);
+  } catch (error) {
+    return res.status(500).json({ err: { err: error.message } });
+  }
+})
+
 app.use("/users", require("./routes/userRoutes"));
 app.use("/units", require("./routes/unitRoutes"));
 app.use("/categories", require("./routes/categoryRoutes"));

@@ -9,3 +9,11 @@ export const StyledGreenLink = styled.a`
     text-decoration: underline;
   }
 `;
+
+export const StyledRedLink = styled(StyledGreenLink)`
+  color: ${(props) => props.theme.red};
+
+  :hover {
+    color: ${(props) => props.theme.redOff};
+  }
+`;

@@ -1,34 +1,26 @@
 import React from "react";
 
-import { StyledCenter, StyledGreenButton, StyledHeader } from "root/css";
+import Card from "../shared/card"
+
+import {StyledHeader, StyledCardGrid} from "root/css";
 
 import useFetch from "root/use/useFetch"
-
 
 export default function ViewAll({userData}) {
   const { data, loading } = useFetch(
     "/api/items/all",
     { method: "GET", headers: { "x-auth-token": userData.token } }
   );
-
+  
   return (
     <>
-      <StyledCenter>
-        {!loading ? data.map(({title, imageUrl, quantity, unitName, categoryName, _id}) => 
-        <section key={_id}>
-          <br></br>
-          <br></br>
-          <ul>
-            <li>{title}</li>
-            <li>{imageUrl}</li>
-            <li>{quantity}</li>
-            <li>{unitName}</li>
-            <li>{categoryName}</li>
-          </ul>
-        </section>) 
+      <StyledCardGrid>
+        {!loading && data.length !== 0 ? data.map((props) => 
+          <Card key={props._id} {...props}/>) 
         : <StyledHeader>Loading Items...</StyledHeader>
         }
-      </StyledCenter>
+      </StyledCardGrid>
     </>
   );
 }
+

@@ -11,4 +11,4 @@ export const UNITS = [
     { name: "Kilogram (kg)" },
   ];
 
-export const CATEGORIES = [{ name: "Default Category" }];
+export const CATEGORIES = [{ name: "Default" }];

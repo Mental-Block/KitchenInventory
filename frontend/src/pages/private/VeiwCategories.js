@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 
-import { StyledCenter, StyledGreenButton, StyledHeader, StyledRedButton} from "root/css";
+import Card from "../shared/card"
+
+import { StyledCenter, StyledGreenButton, StyledHeader, StyledRedButton, StyledCardGrid } from "root/css";
 
 import useFetch from "root/use/useFetch"
 import customFetch from "root/function/customFetch"
@@ -52,23 +54,11 @@ export default function ViewCategories({ userData }) {
 
         {categoryValue ? 
           categoryValue.length !== 0 ? 
-          <div>
-            { categoryValue.map(({title, imageUrl, quantity, unitName, categoryName, _id}) => {  
-              return(
-              <div key={_id}>
-                <br></br>
-                <br></br>
-                <ul>
-                  <li>{title}</li>
-                  <li>{imageUrl}</li>
-                  <li>{quantity}</li>
-                  <li>{unitName}</li>
-                  <li>{categoryName}</li>
-                </ul>
-              </div>)
-            })
-          }
-          </div>
+          <StyledCardGrid>
+              {
+                categoryValue.map((props) => <Card key={props._id} {...props}/>)
+              }
+            </StyledCardGrid>
             : <StyledHeader>no items match these categories</StyledHeader> 
           : null
         }
