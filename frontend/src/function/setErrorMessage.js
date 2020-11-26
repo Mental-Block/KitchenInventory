@@ -1,12 +1,12 @@
-const setErrorMessage = (setError, { name, message }) => {
+const setErrorMessage = (setErrorHook, { name, message }) => {
   Array.isArray(name)
     ? name.map((name) => {
-        setError(name, {
+      setErrorHook(name, {
           type: "manual",
           message: message,
         });
       })
-    : setError(name, {
+    : setErrorHook(name, {
         type: "manual",
         message: message,
       });

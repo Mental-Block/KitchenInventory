@@ -4,16 +4,6 @@ import styled from "styled-components";
 import { flexCenterCenter, flexColumn, flexRow, flexSpace, flexSpaceCenter } from "../flex";
 import { devices, sizes } from "../devices";
 
-export const StyledSidebarMenu = styled.div`
-  position: fixed;
-  top: 110px;
-  left: 20px;
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
-  background-size: contain;
-  z-index: 4;
-`;
 
 export const StyledBurger = styled.div`
   cursor: pointer;
@@ -22,7 +12,7 @@ export const StyledBurger = styled.div`
   border-radius: 6px;
   transition: background-color 0.5s linear;
   background-size: contain;
-  background: ${(props) => (props.toggleValue ? props.theme.grey : null)} url("/images/burgerMenu.svg") no-repeat center
+  background: ${(props) => (props.open ? props.theme.grey : null)} url("/images/burgerMenu.svg") no-repeat center
     center;
 
   @media ${devices.tablet} {
@@ -96,7 +86,7 @@ export const StyledLinkContainer = styled.div`
     margin-top: 0;
     position: initial;
     visibility: initial;
-    width: ${(props) => props.user ? "400px"  : "360px"} ;
+    width: ${(props) => props.user ? "400px" : "360px"};;
     padding: 0;
     background: none;
     ${flexRow};
@@ -134,14 +124,27 @@ export const StyledNav = styled.nav`
   }
 `;
 
+export const StyledSidebarMenu = styled.div`
+  position: fixed;
+  top: 110px;
+  left: 20px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  background-size: contain;
+  z-index: 1;
+`;
+
 export const StyledAside = styled.aside`
   position: absolute;
-  top: 86px;
-  bottom: 222px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   width: 300px;
   box-shadow: 5px -5px 20px ${(props) => props.theme.grey};
   background: ${(props) => props.theme.white};
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const StyledX = styled.span`
@@ -193,6 +196,8 @@ export const StyledDivider = styled.div`
 
 export const StyledFooter = styled.footer`
   position: relative;
+  left: 0;
+  right: 0;
   z-index: 2;
   padding: 3em;
   background-color: ${(props) => props.theme.black};

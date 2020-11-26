@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const itemSchema = new mongoose.Schema({
   title: { type: String, required: true },
   imageUrl: { type: String },
+  expiration: {type: Date, required: true},
   quantity: { type: Number, required: true },
   unitName: { type: String, required: true, maxlength: 20 },
   categoryName: { type: String, required: true, maxlength: 20 },

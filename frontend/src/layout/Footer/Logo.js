@@ -1,25 +1,26 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import scrollTo from "root/function/scrollTo";
-
 import UserContext from "root/context/UserContext";
 
 import { StyledLogo } from "root/css";
 
-export default function Logo() {
+export default function Logo({ ...props }) {
   const { userData } = useContext(UserContext);
+
+  if (userData.user) return (
+    <>
+      <Link to={`/user/${userData.user.id}`}>
+        <StyledLogo onClick={props.top} src="/images/InvertedLogo.svg" />
+      </Link>
+    </>
+  )
+
   return (
     <>
-      {userData.user ? (
-        <Link to={`/user/${userData.user.id}`} onClick={() => scrollTo(0, 0)}>
-          <StyledLogo src="/images/InvertedLogo.svg" />
-        </Link>
-      ) : (
-        <Link to="/" onClick={() => scrollTo(0, 0)}>
-          <StyledLogo src="/images/InvertedLogo.svg" />
-        </Link>
-      )}
+      <Link to="/">
+        <StyledLogo onClick={props.top} src="/images/InvertedLogo.svg" />
+      </Link>
     </>
-  );
+  )
 }

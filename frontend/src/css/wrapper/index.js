@@ -16,9 +16,12 @@ export const StyledPageInnerWrapper = styled.div`
   position: relative;
   left: 0;
   right: 0;
+  bottom: 0;
+  top: 0;
   width: 100%;
   min-height: calc(100vh - 86px);
   margin-top: 86px;
+  z-index: 0;
   /* position: fixed; navbar, not position: static; so we need margin-top*/
 `;
 
@@ -29,9 +32,11 @@ export const StyledPageWrapper = styled.div`
   top: 0;
   bottom: 0;
   min-height: calc(100vh - 86px);
+  z-index: 0;
 `;
 
 export const StyledInnerWrapper = styled.div`
+  width: 100%;
   max-width: ${sizes.laptop};
-  margin: 0 auto;
+  margin: auto auto;
 `;

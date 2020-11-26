@@ -6,10 +6,8 @@ import { StyledPageAnimation, StyledPageInnerWrapper } from "root/css";
 
 import UserContext from "root/context/UserContext";
 
-import PRIVATE from "./private";
-import PUBLIC from "./public";
-
-import NotFound from "root/pages/404NotFound";
+import { PUBLIC, PRIVATE } from "./routes";
+import NotFound from "../pages/404NotFound";
 
 function Routes({ location }) {
   const { userData } = useContext(UserContext);
@@ -24,7 +22,8 @@ function Routes({ location }) {
               <Switch location={location}>
                 {userData.user
                   ? PRIVATE.map((route, key) => <Route exact {...route} key={key} />)
-                  : PUBLIC.map((route, key) => <Route exact {...route} key={key} />)}
+                  : PUBLIC.map((route, key) => <Route exact {...route} key={key} />)
+                  }
                 <Route path="*" component={NotFound} />
                 <Route path="/404" component={NotFound} />
               </Switch>

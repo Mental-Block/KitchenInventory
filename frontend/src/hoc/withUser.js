@@ -1,6 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router";
+
 import UserContext from "root/context/UserContext";
+import UserSideBar from "root/layout/UserSideBar"
 
 const withLoggedInUser = (Component) => {
   const WrappedComponent = ({ props }) => (
@@ -9,14 +11,15 @@ const withLoggedInUser = (Component) => {
         data.userData.user ? (
           data.userData.user.id ? (
             <>
-            <Component userData={data.userData} {...props} />
+              <UserSideBar userData={data.userData} />
+              <Component userData={data.userData} {...props} />
             </>
           ) : (
-            <Redirect to="/404" />
-          )
+              <Redirect to="/404" />
+            )
         ) : (
-          <Redirect to="/" />
-        )
+            <Redirect to="/" />
+          )
       }
     </UserContext.Consumer>
   );

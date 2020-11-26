@@ -4,9 +4,9 @@ import { devices } from "../devices";
 import { StyledGreenButton } from "../button";
 
 export const StyledForm = styled.form`
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   padding: 2em;
-  margin: 6rem auto;
   box-shadow: -5px 5px 20px ${(props) => props.theme.grey},
     5px 5px 20px ${(props) => props.theme.grey};
   border-radius: 8px;
@@ -26,12 +26,12 @@ export const StyledForm = styled.form`
   }
 
   @media ${devices.mobileL} {
-    width: 480px;
+    max-width: 480px;
   }
 `;
 
 export const StyledFormControl = styled.div`
-  margin-bottom: 2rem;
+  margin-bottom: ${(props) => props.sm ? "1.562rem" : '2rem'}; ;
   display: block;
   width: 100%;
 `;
@@ -47,10 +47,10 @@ export const StyledInput = styled.input`
   width: 100%;
   border-radius: 8px;
   border: 1px solid
-    ${(props) => (props.type !== "file" ? props.theme.grey : "none")};
-  padding: ${(props) =>
-    props.type !== "file" ? "0.75rem" : "0.25rem 0 0 0.2rem"};
-  margin: 0.5rem 0;
+    ${(props) => (props.type === "file" ? "none" : props.theme.grey)};
+  padding: ${(props) => props.type === "file" ? "0.25rem 0 0 0.2rem" : props.sm ? "0.5rem" : "0.75rem"
+  };
+  margin: ${(props) => props.sm ? "0" : "0.25rem 0"}; 
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -63,22 +63,24 @@ export const StyledInput = styled.input`
 
   ::-webkit-file-upload-button {
     cursor: pointer;
-    padding: 0.75em;
+    padding: ${(props) => props.sm ? "0.75em" : " 1em"};
     border-radius: 0.3em;
     box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
       inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
       inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
     text-align: center;
     transition: 300ms ease-in;
-    font-weight: 600;
+    font-weight: ${(props) => props.sm ? "600" : " 700"};
     letter-spacing: 0.75px;
-    line-height: 1em;
+    line-height: ${(props) => props.sm ? "0.8em" : " 1em"};
+    font-size: ${(props) => props.sm ? "0.8rem" : " 1rem"};
     display: inline-block;
     text-decoration: none;
     color: ${(props) => props.theme.white};
     box-shadow: none;
     background-color: ${(props) => props.theme.green};
-    border: 2px solid ${(props) => props.theme.greenOff};
+    border: 2px solid ${(props) => props.theme.greenOff}; 
+
 
     :hover {
       background-color: ${(props) => props.theme.greenOff};
@@ -103,3 +105,11 @@ export const StyledGreenPlus = styled(StyledGreenButton)`
   margin: 0 0 0.65rem 1.75rem;
   padding: 0.75em 1em;
 `;
+
+export const StyledFormMargin = styled.div`
+  padding: 2em 0;
+
+  @media ${devices.mobileL} {
+    padding: 4em 0;
+  }
+`

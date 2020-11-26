@@ -32,7 +32,7 @@ export const StyledSection = styled.div`
   }
 `;
 
-export const StyledSectionPadding = styled.div`
+export const StyledPadding = styled.div`
   padding: 4em 1rem;
 
   @media ${devices.mobileL} {

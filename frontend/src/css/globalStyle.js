@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+
     html{
         font-size: 16px;
         background: ${(props) => props.theme.white};
