@@ -3,7 +3,7 @@ import { useHistory } from "react-router"
 
 import UserContext from "root/context/UserContext";
 
-import { StyledRedButton, StyledCenter, StyledGreenButton, StyledSpaceBetween } from "root/css"
+import { StyledRedButton, StyledCenter, StyledGreenButton, StyledButtonContainer } from "root/css"
 
 import Prompt from "root/components/Prompt";
 import customFetch from "root/function/customFetch";
@@ -36,17 +36,18 @@ export default function Settings() {
   return (
     <>
       <StyledCenter>
-        <StyledSpaceBetween>
+        <StyledButtonContainer>
           <StyledGreenButton onClick={() => setName(true)}>Changed Display Name</StyledGreenButton>
           <StyledRedButton onClick={() => setDelete(true)}>Delete Account</StyledRedButton>
-        </StyledSpaceBetween>
+        </StyledButtonContainer>
       </StyledCenter>
+
 
       <Prompt
         open={name}
         close={() => setName(false)}
         reload={getUpdateName}
-        message="Are you sure you want to change your name?"
+        message="What would you like us to call you?"
         btnText={{
           success: "Change Name",
           failed: "Never mind"

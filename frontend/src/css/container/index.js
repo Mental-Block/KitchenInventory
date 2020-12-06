@@ -25,7 +25,7 @@ export const StyledDesktopButtonContainer = styled.div`
   
 `;
 
-export const StyledDeleteButtonContainer = styled.div`
+export const StyledButtonContainer = styled.div`
   ${flexSpaceCenter}
   ${flexColumn}
 

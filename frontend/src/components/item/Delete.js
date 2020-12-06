@@ -1,14 +1,10 @@
-import React, { useState, useContext, useReducer } from "react";
-
-import Prompt from "root/components/Prompt";
-import UserContext from "root/context/UserContext"
+import React, { useReducer } from "react";
 
 import * as Deletes from "./deleteTypes"
 
-import { StyledDeleteButtonContainer, StyledRedButton, StyledGreenButton, StyledCenter } from "root/css"
+import { StyledButtonContainer, StyledRedButton, StyledCenter } from "root/css"
 
 import decodeHtml from "root/function/decodeHtml.js"
-
 
 const ACTION = {
     SHOW_OPTION_1: "1",
@@ -42,22 +38,18 @@ const BUTTONS = [
 export default function Delete({ ...props }) {
     if (!props.open) return null
 
-    const { userData } = useContext(UserContext)
-
     const [{ option1, option2, option3 }, dispatch] = useReducer(reducer, INITIAL_STATE)
     const option4 = !option1 && !option2 && !option3 ? true : false
     const close = () => dispatch({ type: ACTION.SHOW_NONE })
 
-    const [prompt, setPrompt] = useState({ open: false, id: null })
-
     return (
         <> {option4 ?
             <StyledCenter>
-                <StyledDeleteButtonContainer>
+                <StyledButtonContainer>
                     {BUTTONS.map(({ name, type }, key) =>
                         <StyledRedButton key={key} onClick={() => dispatch({ type })}>{decodeHtml(name)}</StyledRedButton>)
                     }
-                </StyledDeleteButtonContainer>
+                </StyledButtonContainer>
             </StyledCenter> : null
         }
 

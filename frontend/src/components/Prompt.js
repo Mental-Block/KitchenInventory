@@ -21,18 +21,17 @@ export default function Prompt({ ...props }) {
   if (!props.open) return null
   const methods = useForm();
   const { reload, close } = props
-  const { url, options } = props.fetch
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
 
-    if (options.headers["content-type"] === "application/json")
-      options.body = JSON.stringify(data);
+    if (props.fetch.options.headers["content-type"] === "application/json")
+      props.fetch.options.body = JSON.stringify(data);
 
-    const response = await customFetch(url, options);
+    const response = await customFetch(props.fetch.url, props.fetch.options);
 
     if (response.message) setErrorMessage(methods.setError, { ...response });
-    else { close(); reload(); }
+    else { reload(); close(); }
   };
 
   return createPortal(

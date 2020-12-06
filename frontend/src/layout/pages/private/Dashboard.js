@@ -5,7 +5,6 @@ import * as Item from "root/components/item"
 import decodeHtml from "root/function/decodeHtml.js"
 
 import { StyledGreenButton, StyledRedButton, StyledDesktopButtonContainer } from "root/css";
-import SearchContext from "root/context/SearchContext";
 
 const ACTION = {
   SHOW_OPTION_1: "1",
@@ -33,13 +32,6 @@ export default function Dashboard() {
   const [{ option1, option2 }, dispatch] = useReducer(reducer, INITIAL_STATE)
   const option3 = !option1 && !option2 ? true : false
   const close = () => dispatch({ type: ACTION.SHOW_NONE })
-
-  // const [search, updateSearch] = useState({ value: "" })
-
-  // const handleChange = (event) => {
-  //   event.preventDefault();
-  //   updateSearch({ value: event.target.value })
-  // }
 
   return (
     <>

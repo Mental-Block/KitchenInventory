@@ -75,7 +75,6 @@ const DisplayItems = ({ ...props }) => {
                     del={() => setDelete({ open: true, id: data._id })}
                     edit={() => setEdit({ open: true, id: data._id })}
                     {...data}
-
                 />)
             })}
 
