@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path")
+const fs = require("fs")
 
 require("dotenv").config();
 
@@ -24,6 +26,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false
   },
   (err) => {
     if (err) return console.error(err);
@@ -34,12 +37,31 @@ mongoose.connect(
 app.get("/images/:fileName", async (req, res) => {
   try {
     const { fileName } = req.params;
-    return res.status(200).sendFile(__dirname + /images/ + fileName);
+
+    const mime = {
+      jpg: 'image/jpg',
+      jpeg: 'image/jpeg',
+      png: 'image/png',
+    };
+
+    const file = path.join(__dirname + /images/ + fileName);
+    const type = mime[path.extname(file).slice(1)] || 'text/plain';
+
+    const s = fs.createReadStream(file);
+
+    s.on('open', () => {
+      res.set('Content-Type', type);
+      s.pipe(res);
+    });
+
+    s.on('error', () => {
+      res.set('Content-Type', 'application/json');
+      return res.status(404).json("404 not found");
+    });
   } catch (error) {
     return res.status(500).json({ err: { err: error.message } });
   }
 })
-
 app.use("/users", require("./routes/userRoutes"));
 app.use("/units", require("./routes/unitRoutes"));
 app.use("/categories", require("./routes/categoryRoutes"));

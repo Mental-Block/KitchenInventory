@@ -1,75 +1,58 @@
-import React, { useState, useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 
 import * as Item from "root/components/item"
 
-import { StyledHeader, StyledItemGrid, StyledCenter } from "root/css";
-
-import useFetch from "root/use/useFetch"
-
 import decodeHtml from "root/function/decodeHtml.js"
 
-import { StyledGreenButton, StyledRedButton } from "root/css";
-
-import styled from "styled-components"
-
-import { StyledPageWrapper } from "../../../css/wrapper";
-
-const ButtonContainer = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  width : 320px;
-  display: flex;
-  justify-content: ${(props) => !props.state ? "flex-end" : "space-between"} ;
-  align-items: center;
-`;
+import { StyledGreenButton, StyledRedButton, StyledDesktopButtonContainer } from "root/css";
+import SearchContext from "root/context/SearchContext";
 
 const ACTION = {
-  0: "add",
-  1: "delete",
-  2: "edit",
-  TOGGLE: "toggle"
+  SHOW_OPTION_1: "1",
+  SHOW_OPTION_2: "2",
+  SHOW_NONE: "none"
 }
 
-const INITIALSTATE = {
-  add: false,
-  del: false,
-  edit: false,
-  toggle: true,
+const INITIAL_STATE = {
+  option1: false,
+  option2: false,
 }
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case ACTION[0]: return { ...state, add: true, toggle: false };
-    case ACTION[1]: return { ...state, del: true, toggle: false };
-    case ACTION[2]: return { ...state, edit: true, toggle: false };
-    case ACTION.TOGGLE: return { add: false, del: false, edit: false, toggle: !state.toggle };
+    case ACTION.SHOW_OPTION_1: return { ...state, option1: true };
+    case ACTION.SHOW_OPTION_2: return { ...state, option2: true };
+    case ACTION.SHOW_NONE: return { option2: false, option1: false };
     default: return state;
   }
 }
 
-const BUTTONS = [{ name: "Add &#10004;" }, { name: "Delete &#10008;" }, { name: "Edit &#9998;" }];
+const BUTTONS = [{ name: "Add &#10004;", type: ACTION.SHOW_OPTION_1 }, { name: "Delete &#10008;", type: ACTION.SHOW_OPTION_2 }];
 
-export default function Dashboard({ userData }) {
-  const [{ toggle, add, del }, dispatch] = useReducer(reducer, INITIALSTATE)
-  const close = () => dispatch({ type: ACTION.TOGGLE })
+export default function Dashboard() {
+  const [{ option1, option2 }, dispatch] = useReducer(reducer, INITIAL_STATE)
+  const option3 = !option1 && !option2 ? true : false
+  const close = () => dispatch({ type: ACTION.SHOW_NONE })
+
+  // const [search, updateSearch] = useState({ value: "" })
+
+  // const handleChange = (event) => {
+  //   event.preventDefault();
+  //   updateSearch({ value: event.target.value })
+  // }
 
   return (
     <>
-      <ButtonContainer state={toggle}>
-        {toggle ? BUTTONS.map(({ name }, key) =>
-          <StyledGreenButton key={key} onClick={() => dispatch({ type: ACTION[key] })}>{decodeHtml(name)}</StyledGreenButton>)
+      <StyledDesktopButtonContainer state={option3}>
+        {option3 ? BUTTONS.map(({ name, type }, key) =>
+          <StyledGreenButton key={key} onClick={() => dispatch({ type })}>{decodeHtml(name)}</StyledGreenButton>)
           : <StyledRedButton onClick={close}>Back &#8617;</StyledRedButton>
         }
-      </ButtonContainer>
+      </StyledDesktopButtonContainer>
 
-      <Item.View open={toggle} token={userData.token} />
-      <Item.Delete open={del} close={close} />
-      <Item.Add open={add} close={close} token={userData.token} />
-
-
-
-
+      <Item.Add open={option1} close={close} />
+      <Item.Delete open={option2} close={close} />
+      <Item.View open={option3} />
     </>
   );
 }

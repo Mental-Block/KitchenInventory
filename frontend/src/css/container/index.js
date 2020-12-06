@@ -13,3 +13,27 @@ export const StyledCenter = styled.div`
   ${flexColumn}
   min-height: inherit;
 `;
+
+export const StyledDesktopButtonContainer = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width : 212.5px;
+  display: flex;
+  justify-content: ${(props) => !props.state ? "flex-end" : "space-between"} ;
+  align-items: center;
+  
+`;
+
+export const StyledDeleteButtonContainer = styled.div`
+  ${flexSpaceCenter}
+  ${flexColumn}
+
+  button{
+    margin: 0.5rem;
+  }
+
+ @media ${devices.tablet}{
+  ${flexRow}
+ }
+`

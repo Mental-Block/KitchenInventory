@@ -25,7 +25,19 @@ const uploadImage = multer({
     if (!extName && !mimeType) return cb(new Error("needs to be a .jpg, .jpeg or .png."), false)
     cb(null, true)
   },
-}).single('addImage')
+}).fields(
+  [
+    {
+      name: 'editImage',
+      maxCount: 1
+    },
+    {
+      name: 'addImage',
+      maxCount: 1
+    }
+  ]
+)
+
 
 
 

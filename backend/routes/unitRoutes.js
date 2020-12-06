@@ -40,7 +40,7 @@ router.delete("/delete/:id", auth, async (req, res) => {
 
     if (!unit) return res.status(400).json({ message: "no unit found." });
 
-    await Category.findByIdAndDelete(req.params.id);
+    await Unit.findByIdAndDelete(req.params.id);
     return res.json("Unit deleted.");
   } catch (error) {
     return res.status(500).json({ err: { err: error.message } });

@@ -82,6 +82,8 @@ export const StyledLinkContainer = styled.div`
   ${flexCenterCenter};
   ${flexColumn};
 
+  input{width: 280px; margin-bottom: 1.5rem}
+
   @media ${devices.tablet} {
     margin-top: 0;
     position: initial;
@@ -91,7 +93,11 @@ export const StyledLinkContainer = styled.div`
     background: none;
     ${flexRow};
     ${flexSpace};
+
+    input{margin-bottom: auto;}
   }
+
+  
 `;
 
 export const StyledLogo = styled.img`

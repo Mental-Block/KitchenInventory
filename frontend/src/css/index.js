@@ -10,7 +10,7 @@ export { StyledImageBackground, StyledAltBackground, StyledOverlayBackground } f
 
 export { StyledSection, StyledPadding } from "./misc";
 
-export { StyledCenter, StyledSpaceBetween } from "./container";
+export { StyledCenter, StyledSpaceBetween, StyledDesktopButtonContainer, StyledDeleteButtonContainer } from "./container";
 
 export { StyledForm, StyledLabel, StyledInput, StyledFormControl, StyledErrorText, StyledGreenPlus, StyledFormMargin } from "./form";
 
@@ -34,3 +34,5 @@ export {
 } from "./layout";
 
 export { StyledItem, StyledItemGrid, StyledItemImg } from "./item"
+
+export { StyledTH, StyledTable, StyledTD } from "./table"

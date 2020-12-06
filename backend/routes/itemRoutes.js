@@ -17,10 +17,10 @@ router.post("/add", auth, async (req, res) => {
       } = req.body
 
       if (error) return res.status(400).json({ name: "addImage", message: error.message })
-      if (!addTitle || !addQuantity || !addDate) return res.status(400).json({ name: ["addItem", "addQuantity"], message: "can't be left empty" });
+      if (!addTitle || !addQuantity || !addDate) return res.status(400).json({ name: ["addTitle", "addDate", "addQuantity"], message: "can't be left empty" });
 
-      if (!req.file) addImage = "images/default.png"
-      else addImage = req.file.path
+      if (req.files.addImage !== undefined) addImage = req.files.addImage[0].path
+      else addImage = "images/default.png"
 
       const newItem = new Item({
         title: addTitle,
@@ -88,5 +88,59 @@ router.delete("/delete/:id", auth, async (req, res) => {
     return res.status(500).json({ err: { err: error.message } });
   }
 });
+
+router.patch("/edit/:id", auth, async (req, res) => {
+  try {
+    uploadImage(req, res, async (error) => {
+      let {
+        editTitle,
+        editQuantity,
+        editImage,
+        prevImage,
+        editDate,
+        editUnit,
+        editCategory
+      } = req.body
+
+      if (error) return res.status(400).json({ name: "editImage", message: error.message })
+
+      if (req.files.editImage !== undefined && editImage !== String) {
+        editImage = req.files.editImage[0].path
+
+        if (prevImage !== "images/default.png") {
+          fs.unlink(prevImage, (err) => {
+            if (err) {
+              console.error(err)
+              return
+            }
+          })
+        }
+      }
+
+      const filter = {
+        userId: req.user,
+        _id: req.params.id,
+      }
+
+      const update = {
+        title: editTitle,
+        expiration: editDate,
+        imageUrl: editImage,
+        quantity: editQuantity,
+        unitName: editUnit,
+        categoryName: editCategory,
+        userId: req.user,
+      }
+
+      const newItem = await Item.findOneAndUpdate(filter, update);
+
+      if (!newItem) return res.status(400).json({ message: "no item found." });
+
+      return res.status(200).json("Item updated")
+    })
+  } catch (error) {
+    return res.status(500).json({ err: { err: error.message } });
+  }
+})
 
 module.exports = router;

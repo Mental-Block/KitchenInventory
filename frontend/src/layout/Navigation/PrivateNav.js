@@ -2,12 +2,23 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 import UserContext from "root/context/UserContext";
+import SearchContext from "root/context/SearchContext"
 
 import { StyledRedButton, StyledInput } from "root/css";
 
 export default function PrivateNav() {
   const history = useHistory();
-  const { setUserData } = useContext(UserContext);
+  const { setUserData, userData } = useContext(UserContext);
+  const { searchValue, setSearchValue } = useContext(SearchContext);
+
+  const pushPage = () => {
+    if (history.location.pathname !== `/user/${userData.user.id}/dashboard`) history.push(`/user/${userData.user.id}/dashboard`);
+  }
+
+  const search = (event) => {
+    event.preventDefault();
+    setSearchValue(event.target.value)
+  }
 
   const logout = () => {
     setUserData({
@@ -20,7 +31,7 @@ export default function PrivateNav() {
 
   return (
     <>
-      <StyledInput style={{ width: "280px" }} placeholder="search for items or groups..." name="search" />
+      <StyledInput value={searchValue} onClick={() => pushPage()} onChange={(event) => search(event)} placeholder="search..." name="search" />
       <StyledRedButton onClick={() => logout()}>Log Out</StyledRedButton>
     </>
   )
