@@ -47,9 +47,9 @@ export default function Login() {
       <StyledCenter>
         <StyledInnerWrapper>
           <StyledPadding>
-            <Form onSubmit={login} methods={methods}>
-              <Input name="loginEmail" label="Email" type="text" placeholder="Email" />
-              <Input name="loginPassword" label="Password" type="password" placeholder="Password" />
+            <Form onSubmit={login} methods={methods} >
+              <Input name="loginEmail" label="Email" type="text" placeholder="Email" autoComplete="username" />
+              <Input name="loginPassword" label="Password" type="password" placeholder="Password" autoComplete="current-password" />
               <StyledSpaceBetween>
                 <StyledGreenButton as="input" value="Log in" type="submit" />
                 <StyledLoginParagraph>

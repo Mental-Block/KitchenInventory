@@ -32,7 +32,7 @@ export default function Prompt({ ...props }) {
     const response = await customFetch(url, options);
 
     if (response.message) setErrorMessage(methods.setError, { ...response });
-    else { reload(); close(); }
+    else { close(); reload(); }
   };
 
   return createPortal(

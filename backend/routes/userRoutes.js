@@ -2,7 +2,11 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
+
 const User = require("../models/userModel");
+const Category = require("../models/categoryModel");
+const Unit = require("../models/unitModel");
+const Item = require("../models/itemModel");
 
 router.post("/register", async (req, res) => {
   try {
@@ -104,8 +108,12 @@ router.post("/tokenIsValid", async (req, res) => {
 
 router.delete("/delete", auth, async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.user);
-    res.json(deletedUser);
+    await User.findByIdAndDelete(req.user);
+    await Category.findOneAndDelete({ userId: req.user });
+    await Unit.findOneAndDelete({ userId: req.user })
+    await Item.findOneAndDelete({ userId: req.user })
+
+    return res.status(200).json("deleted user");
   } catch (error) {
     res.status(500).json({ err: error.message });
   }
@@ -123,4 +131,25 @@ router.get("/user", auth, async (req, res) => {
   }
 });
 
+router.patch("/name", auth, async (req, res) => {
+  try {
+    let { changeName } = req.body
+
+    if (!changeName) return res.status(400).json({
+      name: "changeName",
+      message: "Not all fields have been entered.",
+    });
+
+    await User.findOneAndUpdate({ _id: req.user }, { displayName: changeName });
+
+    const user = await User.findById(req.user);
+
+    return res.json({
+      displayName: user.displayName,
+      id: user._id,
+    });
+  } catch (error) {
+    res.status(500).json({ err: error.message });
+  }
+})
 module.exports = router;
