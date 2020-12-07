@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static('./dist'));
+  app.use(express.static(path.join(__dirname, 'dist')));
 } else {
   app.use(express.static('./public'));
 }
