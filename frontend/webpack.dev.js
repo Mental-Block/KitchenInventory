@@ -8,4 +8,15 @@ module.exports = merge(common, {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
     },
+    devServer: {
+        contentBase: path.resolve("./public"),
+        proxy: {
+            "/api/**": {
+                target: "http://localhost:5000/",
+                pathRewrite: { "^/api": "" },
+                secure: false,
+                changeOrigin: true,
+            },
+        },
+    }
 });

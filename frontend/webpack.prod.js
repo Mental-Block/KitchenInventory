@@ -7,7 +7,16 @@ module.exports = merge(common, {
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
-
     },
-
+    devServer: {
+        contentBase: path.resolve("./dist"),
+        proxy: {
+            "/api/**": {
+                target: "https://kitchen--inventory.herokuapp.com/",
+                pathRewrite: { "^/api": "" },
+                secure: true,
+                changeOrigin: true,
+            },
+        },
+    }
 });
