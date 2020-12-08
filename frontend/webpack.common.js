@@ -10,6 +10,15 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+        contentBase: path.resolve("./public"),
+        proxy: {
+            "/api/**": {
+                target: "http://localhost:5000/",
+                pathRewrite: { "^/api": "" },
+                secure: false,
+                changeOrigin: true,
+            },
+        },
     },
     module: {
         rules: [
@@ -23,15 +32,14 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: ["file-loader"]
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]',
+                },
             },
             {
                 test: /\.html$/,
                 loader: ["html-loader"],
-            },
-            {
-                test: /\.(png|jpg)$/,
-                loader: ["url-loader"],
             },
         ],
     },
@@ -39,6 +47,6 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./public/index.html",
             filename: "./index.html"
-        }),
+        })
     ]
 };
