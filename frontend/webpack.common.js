@@ -1,23 +1,12 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: "./src/index",
     resolve: {
         alias: {
             root: path.resolve(__dirname, "./src"),
-        },
-    },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: path.resolve("./public"),
-        proxy: {
-            "/api/**": {
-                target: "http://localhost:5000/",
-                pathRewrite: { "^/api": "" },
-                secure: false,
-                changeOrigin: true,
-            },
         },
     },
     module: {
@@ -31,11 +20,8 @@ module.exports = {
                 use: ["style-loader", "css-loader"],
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]',
-                },
+                test: /.(png|jpg|svg)$/,
+                loader: 'url-loader?limit=1024000'
             },
             {
                 test: /\.html$/,
@@ -47,6 +33,11 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./public/index.html",
             filename: "./index.html"
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: "./public/images", to: "images" }
+            ]
         })
     ]
 };
