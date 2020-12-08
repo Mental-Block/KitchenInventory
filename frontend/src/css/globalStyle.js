@@ -1,6 +1,6 @@
-import styled from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = styled.html`
+const GlobalStyle = createGlobalStyle`
     *, *::before, *::after{
         box-sizing: border-box;
         margin: 0;
@@ -20,4 +20,4 @@ const GlobalStyle = styled.html`
     }
 `;
 
-export default GlobalStyle
+export default GlobalStyle;
