@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&display=swap');
 
-    *, *::before, *::after/* No idea why h1 is ignoring margin */{
+    *, *::before, *::after{
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -21,5 +21,3 @@ const GlobalStyle = createGlobalStyle`
         display: block;
     }
 `;
-
-export default GlobalStyle;
