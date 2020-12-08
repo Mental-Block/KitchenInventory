@@ -1,4 +1,4 @@
-export { GlobalStyle } from "./GlobalStyle";
+export { default as GlobalStyle } from "./GlobalStyle";
 export { default as DefaultTheme } from "./Theme";
 export { StyledGreenButton, StyledRedButton } from "./button";
 export { StyledWhiteHeader, StyledWhiteSubHeader, StyledHeader } from "./header";

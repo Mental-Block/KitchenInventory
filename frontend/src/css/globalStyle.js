@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&display=swap');
-
+const GlobalStyle = createGlobalStyle`
     *, *::before, *::after{
         box-sizing: border-box;
         margin: 0;
@@ -21,3 +19,5 @@ export const GlobalStyle = createGlobalStyle`
         display: block;
     }
 `;
+
+export default GlobalStyle
