@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle, DefaultTheme, StyledContentWrapper } from "root/css";
+import { DefaultTheme, StyledContentWrapper } from "root/css";
 
 import Routes from "./layout/Routes";
 import Navigation from "./layout/Navigation";
@@ -50,7 +50,6 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={DefaultTheme}>
-        <GlobalStyle />
         <Router>
           <UserContext.Provider value={{ userData, setUserData }}>
             <StyledContentWrapper>
