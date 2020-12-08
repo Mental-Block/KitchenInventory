@@ -21,8 +21,10 @@
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^1.2.1",
     "url-loader": "^4.1.0",
+    "webpack": "^5.10.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.4.0"
   },
   "dependencies": {
     "@hookform/error-message": "0.0.3",
@@ -34,8 +36,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",
-    "styled-components": "^5.1.1",
-    "webpack": "^5.10.0",
-    "webpack-merge": "^5.4.0"
+    "styled-components": "^5.1.1"
   }
 }
