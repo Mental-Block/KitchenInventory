@@ -7,7 +7,7 @@
     "node": "10.x"
   },
   "scripts": {
-    "heroku-postbuild": "cd frontend && npm i && webpack -p && cd ../backend && npm i",
+    "heroku-postbuild": "cd frontend && npm i && npm run build && cd ../backend && npm i",
     "start": "cd backend && npm start"
   },
   "repository": {
