@@ -1,6 +1,6 @@
-import { createGlobalStyle } from "styled-components";
+import styled from "styled-components"
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = styled.html`
     *, *::before, *::after{
         box-sizing: border-box;
         margin: 0;
