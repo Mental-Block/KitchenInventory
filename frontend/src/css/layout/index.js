@@ -12,7 +12,7 @@ export const StyledBurger = styled.div`
   border-radius: 6px;
   transition: background-color 0.5s linear;
   background-size: contain;
-  background: ${(props) => (props.open ? props.theme.grey : null)} url("/images/burgerMenu.svg") no-repeat center
+  background: ${(props) => (props.open ? props.theme.grey : null)} url("/images/BurgerMenu.svg") no-repeat center
     center;
 
   @media ${devices.tablet} {
