@@ -14,7 +14,7 @@ module.exports = merge(common, {
         contentBase: path.resolve("./dist"),
         proxy: {
             "/api/**": {
-                target: "https://kitchen--inventory.herokuapp.com/",
+                target: "http://localhost:5000/",
                 pathRewrite: { "^/api": "" },
                 secure: true,
                 changeOrigin: true,
