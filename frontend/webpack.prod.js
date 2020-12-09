@@ -16,9 +16,10 @@ module.exports = merge(common, {
             "/api/**": {
                 target: "https://kitchen--inventory.herokuapp.com/",
                 pathRewrite: { "^/api": "" },
-                secure: false,
+                secure: true,
                 changeOrigin: true,
             },
         },
+        allowedHosts: ["https://kitchen--inventory.herokuapp.com/"]
     },
 });

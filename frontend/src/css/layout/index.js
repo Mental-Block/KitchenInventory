@@ -4,17 +4,14 @@ import styled from "styled-components";
 import { flexCenterCenter, flexColumn, flexRow, flexSpace, flexSpaceCenter } from "../flex";
 import { devices, sizes } from "../devices";
 
-
-export const StyledBurger = styled.div`
+export const StyledBurger = styled.img`
   cursor: pointer;
   height: 50px;
   width: 50px;
   border-radius: 6px;
   transition: background-color 0.5s linear;
   background-size: contain;
-  background: ${(props) => (props.open ? props.theme.grey : null)} url("/images/BurgerMenu.svg") no-repeat center
-    center;
-
+  background: ${(props) => (props.open ? props.theme.grey : null)};
   @media ${devices.tablet} {
     display: none;
   }
