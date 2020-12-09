@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, '/dist')));
+  app.use(express.static(path.join(__dirname, './dist')));
 
   app.get("/*", (req, res) => {
     res.sendFile(
