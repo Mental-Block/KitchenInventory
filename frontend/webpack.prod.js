@@ -4,6 +4,7 @@ const { merge } = require("webpack-merge");
 
 module.exports = merge(common, {
     mode: "production",
+    entry: "./dist/main.js",
     output: {
         filename: "main.js",
         path: path.resolve(__dirname, "dist"),
