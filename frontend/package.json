@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@hookform/error-message": "0.0.3",
-    "http-proxy-middleware": "^1.0.6",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -39,5 +38,10 @@
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.1",
     "styled-components": "^5.2.1"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:5000/"
+    }
   }
 }
