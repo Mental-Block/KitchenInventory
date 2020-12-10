@@ -14,12 +14,11 @@ module.exports = merge(common, {
         contentBase: path.resolve("./dist"),
         proxy: {
             "/api/**": {
-                target: "http://localhost:5000/",
+                target: "https://kitchen--inventory.herokuapp.com/",
                 pathRewrite: { "^/api": "" },
                 secure: true,
                 changeOrigin: true,
             },
         },
-        allowedHosts: ["https://kitchen--inventory.herokuapp.com/"]
     },
 });

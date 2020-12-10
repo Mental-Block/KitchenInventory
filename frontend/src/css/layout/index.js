@@ -6,11 +6,14 @@ import { devices, sizes } from "../devices";
 
 export const StyledBurger = styled.img`
   cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  width: auto;
   height: 50px;
-  width: 50px;
-  border-radius: 6px;
-  transition: background-color 0.5s linear;
-  background-size: contain;
+  padding: 0.15rem 0.3rem;
+  transition: background 500ms;
+  background-size: cover;
+  border-radius: 8px;
   background: ${(props) => (props.open ? props.theme.grey : null)};
   @media ${devices.tablet} {
     display: none;
@@ -19,13 +22,12 @@ export const StyledBurger = styled.img`
 
 export const StyledClickCatcher = styled.div`
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   bottom: 0;
   left: 0;
-  top: 0;
+  top: 84px;
   right: 0;
-  width: 100%;
-  height: calc(100vh - 86px);
+  height: 100vh;
   cursor: default;
 `;
 
@@ -69,8 +71,8 @@ export const StyledNavLink = styled(NavLink)`
 
 export const StyledLinkContainer = styled.div`
   position: absolute;
-  margin-top: 0.6rem;
   padding: 2rem 0;
+  top: 84px;
   bottom: auto;
   left: 0px;
   right: 0px;
@@ -78,6 +80,7 @@ export const StyledLinkContainer = styled.div`
   background: ${(props) => props.theme.grey};
   ${flexCenterCenter};
   ${flexColumn};
+  z-index: 1;
 
   input{width: 280px; margin-bottom: 1.5rem}
 
@@ -93,8 +96,6 @@ export const StyledLinkContainer = styled.div`
 
     input{margin-bottom: auto;}
   }
-
-  
 `;
 
 export const StyledLogo = styled.img`
@@ -105,7 +106,6 @@ export const StyledLogo = styled.img`
 export const StyledNav = styled.nav`
   position: fixed;
   max-width: ${sizes.desktop};
-  margin: 0 auto;
   z-index: 100;
   top: 0;
   left: 0;
@@ -114,17 +114,6 @@ export const StyledNav = styled.nav`
   background-color: ${(props) => props.theme.white};
   background: linear-gradient(${(props) => props.theme.white} 20%, ${(props) => props.theme.grey});
   ${flexSpaceCenter};
-  flex-wrap: wrap;
-
-  div:nth-child(3) {
-    width: 100%;
-  }
-  @media ${devices.tablet} {
-    flex-wrap: nowrap;
-    div:nth-child(3) {
-      width: auto;
-    }
-  }
 `;
 
 export const StyledSidebarMenu = styled.div`
