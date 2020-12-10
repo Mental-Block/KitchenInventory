@@ -4,7 +4,6 @@ const { merge } = require("webpack-merge");
 
 module.exports = merge(common, {
     mode: "development",
-    entry: "./src/index.js",
     devServer: {
         historyApiFallback: true,
         contentBase: path.resolve("./public"),

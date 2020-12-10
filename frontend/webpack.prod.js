@@ -4,21 +4,8 @@ const { merge } = require("webpack-merge");
 
 module.exports = merge(common, {
     mode: "production",
-    entry: "./dist/main.js",
     output: {
-        filename: "main.js",
+        filename: "[name].[contenthash].js",
         path: path.resolve(__dirname, "dist"),
-    },
-    devServer: {
-        historyApiFallback: true,
-        contentBase: path.resolve("./dist"),
-        proxy: {
-            "/api/**": {
-                target: "https://kitchen--inventory.herokuapp.com/",
-                pathRewrite: { "^/api": "" },
-                secure: true,
-                changeOrigin: true,
-            },
-        },
     },
 });
