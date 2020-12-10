@@ -10,7 +10,7 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(createProxyMiddleware("/api", { target: "http://localhost:5000/" }));
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,6 +26,8 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.use(express.static('./public'));
 }
+
+app.use(createProxyMiddleware("/api", { target: "http://localhost:5000/" }));
 
 const PORT = process.env.PORT || 5000;
 
