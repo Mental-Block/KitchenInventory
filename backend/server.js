@@ -3,12 +3,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path")
-const fs = require("fs")
+const fs = require("fs");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 require("dotenv").config();
 
 const app = express();
 
+app.use(createProxyMiddleware("/api/", { target: "http://localhost:5000/" }));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
