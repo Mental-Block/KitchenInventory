@@ -29,6 +29,9 @@ export const StyledClickCatcher = styled.div`
   right: 0;
   height: 100vh;
   cursor: default;
+  @media ${devices.tablet} {
+    display: none;
+  }
 `;
 
 export const StyledNavLink = styled(NavLink)`
