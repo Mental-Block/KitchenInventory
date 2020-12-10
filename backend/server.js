@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path")
 const fs = require("fs");
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 
 require("dotenv").config();
 
@@ -14,6 +16,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "production") {
+  app.use(
+    '/api/**',
+    createProxyMiddleware({
+      target: 'https://kitchen--inventory.herokuapp.com/',
+      "secure": true,
+      "changeOrigin": true,
+      pathRewrite: { "^/api": "" },
+    })
+  );
+
   app.use(express.static(path.join(__dirname, "../", "frontend/", "dist")));
 
   app.get("/*", (req, res) => {
