@@ -10,10 +10,10 @@ export const StyledBurger = styled.img`
   right: 1rem;
   width: auto;
   height: 50px;
-  padding: 0.15rem 0.3rem;
   transition: background 500ms;
   background-size: cover;
   border-radius: 8px;
+  padding: 0.1rem 0.4rem;
   background: ${(props) => (props.open ? props.theme.grey : null)};
   @media ${devices.tablet} {
     display: none;
