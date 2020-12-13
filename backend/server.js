@@ -10,29 +10,27 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(
-  '/api/**',
-  createProxyMiddleware({
-    target: 'http://localhost:5000',
-    "secure": true,
-    "changeOrigin": true,
-    pathRewrite: { "^/api/": "" },
-  })
-);
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('./public'));
 
 if (process.env.NODE_ENV === "production") {
+  app.use(
+    '/api/**',
+    createProxyMiddleware({
+      target: 'https://kitchen--inventory.herokuapp.com/',
+      "secure": true,
+      "changeOrigin": true,
+      pathRewrite: { "^/api/": "" },
+    })
+  );
   app.use(express.static(path.join(__dirname, "../", "frontend/", "dist")));
   app.get("/*", (req, res) => {
     res.sendFile(
       path.join(__dirname, "../", "frontend/", "dist/", "index.html")
     );
   });
-
 }
 
 const PORT = process.env.PORT || 5000;
