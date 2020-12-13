@@ -14,7 +14,7 @@ app.use(
   '/api/**',
   createProxyMiddleware({
     target: "http://localhost:5000",
-    "secure": true,
+    "secure": false,
     "changeOrigin": true,
     pathRewrite: { "^/api/": "/api/" },
   })
