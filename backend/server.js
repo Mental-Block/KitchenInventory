@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(
     '/api/**',
     createProxyMiddleware({
-      target: 'https://kitchen--inventory.herokuapp.com/',
+      target: 'http://localhost:5000',
       "secure": true,
       "changeOrigin": true,
       pathRewrite: { "^/api/": "" },
@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === "production") {
       path.join(__dirname, "../", "frontend/", "dist/", "index.html")
     );
   });
+
 }
 
 const PORT = process.env.PORT || 5000;
