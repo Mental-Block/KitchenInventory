@@ -56,10 +56,11 @@ const DisplayItems = ({ ...props }) => {
     const [del, setDelete] = useState(INITIAL_STATE);
     const [edit, setEdit] = useState(INITIAL_STATE);
 
+    if (props.data.data === null) return null; // no items in the search
     return (
         <>
             {props.data.data.map((data) => {
-                if (data === undefined || null) return
+                if (data === undefined || null) return // items no in search
                 if (edit.open && edit.id === data._id) {
                     return <Edit
                         key={data._id}
