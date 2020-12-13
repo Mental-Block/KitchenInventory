@@ -4,16 +4,14 @@ const useFetch = (url, options, reload) => {
   const [dataValue, setData] = useState({ data: null, loading: true });
 
   useEffect(() => {
-    try {
+    const getData = () => {
       setData((dataValue) => ({ ...dataValue }));
       fetch(url, options)
         .then((res) => res.json())
         .then((res) => setData({ data: res, loading: false }))
         .catch((error) => console.log(error));
     }
-    catch (error) {
-      console.log(error)
-    }
+    getData();
   }, [reload]);
 
   return dataValue;
