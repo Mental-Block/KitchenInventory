@@ -12,11 +12,11 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('./public'));
+app.use(express.static('./dist'));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../", "frontend/", "dist")));
-  app.get("/*", (req, res) => {
+  app.get("/", (req, res) => {
     res.sendFile(
       path.join(__dirname, "../", "frontend/", "dist/", "index.html")
     );

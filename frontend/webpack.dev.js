@@ -6,11 +6,11 @@ module.exports = merge(common, {
     mode: "development",
     devServer: {
         historyApiFallback: true,
-        contentBase: path.resolve("./public"),
+        contentBase: path.resolve("./dist"),
         proxy: {
             "/api/**": {
                 target: "http://localhost:5000/",
-                pathRewrite: { "^/api": "" },
+                pathRewrite: { "^/api": "/api/" },
                 secure: false,
                 changeOrigin: true,
             },
