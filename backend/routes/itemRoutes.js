@@ -45,16 +45,7 @@ router.get("/all", auth, async (req, res) => {
     const items = await Item.find({ userId: req.user });
     // const ItemNames = units.map(({ unitName }) => ({ name: unitName }));
 
-    return res.status(200).json(items);
-  } catch (error) {
-    return res.status(500).json({ err: { err: error.message } });
-  }
-})
-
-router.post("/category", auth, async (req, res) => {
-  try {
-    const { categoryName } = req.body
-    const items = await Item.find({ userId: req.user, categoryName: categoryName });
+    if (!items) return res.status(400).json({ message: "no item found." });
 
     return res.status(200).json(items);
   } catch (error) {
