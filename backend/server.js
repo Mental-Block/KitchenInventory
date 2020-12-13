@@ -4,22 +4,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path")
 const fs = require("fs");
-//const { createProxyMiddleware } = require('http-proxy-middleware');
-
 
 require("dotenv").config();
 
 const app = express();
-
-// app.use(
-//   '/api/**',
-//   createProxyMiddleware({
-//     target: "http://localhost:5000/",
-//     "secure": false,
-//     "changeOrigin": true,
-//     pathRewrite: { "^/api/": "/api/" },
-//   })
-// );
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
