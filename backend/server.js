@@ -55,7 +55,7 @@ mongoose.connect(
   }
 );
 
-app.get("/images/:fileName", async (req, res) => {
+app.get("/api/images/:fileName", async (req, res) => {
   try {
     const { fileName } = req.params;
 
@@ -83,8 +83,8 @@ app.get("/images/:fileName", async (req, res) => {
     return res.status(500).json({ err: { err: error.message } });
   }
 })
-app.use("/users", require("./routes/userRoutes"));
-app.use("/units", require("./routes/unitRoutes"));
-app.use("/categories", require("./routes/categoryRoutes"));
-app.use("/items", require("./routes/itemRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/units", require("./routes/unitRoutes"));
+app.use("/api/categories", require("./routes/categoryRoutes"));
+app.use("/api/items", require("./routes/itemRoutes"));
 //app.use("/contact", require("./routes/contactRoutes"));
