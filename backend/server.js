@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path")
 const fs = require("fs");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 require("dotenv").config();
 
@@ -14,6 +15,15 @@ app.use(bodyParser.json());
 app.use(express.static('./public'));
 
 if (process.env.NODE_ENV === "production") {
+  app.use(
+    '/api/**',
+    createProxyMiddleware({
+      target: "http://localhost:5000",
+      "secure": true,
+      "changeOrigin": true,
+      pathRewrite: { "^/api/": "" },
+    })
+  );
   app.use(express.static(path.join(__dirname, "../", "frontend/", "dist")));
   app.get("/*", (req, res) => {
     res.sendFile(
