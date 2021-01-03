@@ -23,7 +23,7 @@ export default function SideBar({...props}) {
                   onClick={() => scrollTo(0, 0)}
                   exact
                   key={key}
-                  to={`${path.replace(":id", props.user.id)}`}
+                  to={path}
                   activeClassName={"active"}
                   className={"sidebar_link"}
                 >

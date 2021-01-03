@@ -39,7 +39,8 @@ export default function Categories({ ...props }) {
         <Table
             close={props.close}
             onSubmit={deleteCategory}
-            message="*Any Card with this category will NOT be deleted."
+            message="*Any item with this category will NOT be deleted."
+            title="Categories"
             {...category} />
     );
 }

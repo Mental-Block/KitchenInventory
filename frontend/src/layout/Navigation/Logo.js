@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import {useRouteMatch} from "react-router-dom"
+
 import { NavLink } from "react-router-dom";
 
 import UserContext from "root/context/UserContext";
@@ -11,7 +13,7 @@ export default function Logo({ ...props }) {
   if (userData.user) {
     return (
       <StyledSpaceBetween>
-        <NavLink to={`/user/${userData.user.id}`}>
+        <NavLink to="/">
           <StyledLogo onClick={props.top} src="/images/user.svg" />
         </NavLink>
         <h2>{userData.user.displayName}</h2>

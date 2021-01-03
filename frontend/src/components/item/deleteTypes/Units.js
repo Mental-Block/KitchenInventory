@@ -40,7 +40,8 @@ export default function Units({ ...props }) {
         <Table
             close={props.close}
             onSubmit={deleteUnits}
-            message="*Any Card with this unit will NOT be deleted."
+            message="*Any item with this unit will NOT be deleted."
+            title="Units"
             {...units} />
     );
 }

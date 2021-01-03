@@ -32,7 +32,7 @@ export default function Register() {
       const { user, token } = response
       setUserData({ token: token, user: user });
       localStorage.setItem("auth-token", token);
-      history.push(`/user/${user.id}`);
+      history.push(`/`);
     }
   }
 

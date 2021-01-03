@@ -24,7 +24,7 @@ export default function Home() {
       </Banner>
 
       <Section>
-        <StyledHeader>Add And Delete Fridge Contents</StyledHeader>
+        <StyledHeader>Add Inventory</StyledHeader>
         <StyledParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie dolor id risus faucibus, vel
           placerat nulla rhoncus. Donec porta nulla in iaculis feugiat. Vestibulum a odio a ante pretium placerat.
@@ -34,11 +34,11 @@ export default function Home() {
           Vestibulum a odio a ante pretium placerat. Maecenas quis fringilla tellus. Etiam sollicitudin nisl eu enim
           iaculis dapibus. Donec facilisis gravida nulla, vel egestas tortor scelerisque id.
           </StyledParagraph>
-        <img src="./images/landing-background-414.png" />
+        <img src="./images/add.jpeg" />
       </Section>
 
       <Section>
-        <StyledHeader>Group Contents</StyledHeader>
+        <StyledHeader>Delete Inventory</StyledHeader>
         <StyledParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie dolor id risus faucibus, vel
           placerat nulla rhoncus. Donec porta nulla in iaculis feugiat. Vestibulum a odio a ante pretium placerat.
@@ -48,11 +48,11 @@ export default function Home() {
           Vestibulum a odio a ante pretium placerat. Maecenas quis fringilla tellus. Etiam sollicitudin nisl eu enim
           iaculis dapibus. Donec facilisis gravida nulla, vel egestas tortor scelerisque id.
           </StyledParagraph>
-        <img src="./images/landing-background-414.png" />
+        <img src="./images/delete.jpeg" />
       </Section>
 
       <Section>
-        <StyledHeader>Set Quantity And Expiration</StyledHeader>
+        <StyledHeader>Edit Inventory</StyledHeader>
         <StyledParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie dolor id risus faucibus, vel
           placerat nulla rhoncus. Donec porta nulla in iaculis feugiat. Vestibulum a odio a ante pretium placerat.
@@ -62,11 +62,11 @@ export default function Home() {
           Vestibulum a odio a ante pretium placerat. Maecenas quis fringilla tellus. Etiam sollicitudin nisl eu enim
           iaculis dapibus. Donec facilisis gravida nulla, vel egestas tortor scelerisque id.
           </StyledParagraph>
-        <img src="./images/landing-background-414.png" />
+        <img src="./images/edit.jpeg" />
       </Section>
 
       <Section>
-        <StyledHeader>Add Images</StyledHeader>
+        <StyledHeader>Search Inventory</StyledHeader>
         <StyledParagraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie dolor id risus faucibus, vel
           placerat nulla rhoncus. Donec porta nulla in iaculis feugiat. Vestibulum a odio a ante pretium placerat.
@@ -76,7 +76,7 @@ export default function Home() {
           Vestibulum a odio a ante pretium placerat. Maecenas quis fringilla tellus. Etiam sollicitudin nisl eu enim
           iaculis dapibus. Donec facilisis gravida nulla, vel egestas tortor scelerisque id.
           </StyledParagraph>
-        <img src="./images/landing-background-414.png" />
+        <img src="./images/search.jpeg" />
       </Section>
     </>
   );

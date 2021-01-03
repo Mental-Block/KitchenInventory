@@ -39,8 +39,10 @@ export default function Categories({ ...props }) {
 
     return (
         <Table
+            message={"*Any catergory or unit with this item will NOT be deleted."}
             close={props.close}
             onSubmit={deleteItems}
+            title="Items"
             {...items} />
     );
 }

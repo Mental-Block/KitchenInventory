@@ -16,15 +16,15 @@ import {
 export default function Table({ ...props }) {
     const methods = useForm({ validateCriteriaMode: "all" });
     const { register } = methods;
-
+    
     return (
         <>
             <Form onSubmit={props.onSubmit} methods={methods}>
-                {props.message ? <StyledParagraph>{props.message}</StyledParagraph> : null}
+                {props.message ? <StyledParagraph>{props.message}</StyledParagraph> : <StyledParagraph>Loading...</StyledParagraph>}
                 <StyledTable>
                     <thead>
                         <tr>
-                            <StyledTH>Categories</StyledTH>
+                        {props.title ? <StyledTH>{props.title}</StyledTH> : <StyledTH>Loading...</StyledTH> }
                             <StyledTH>Select To Delete</StyledTH>
                         </tr>
                     </thead>

@@ -38,7 +38,7 @@ export default function Login() {
       const { token, user } = response;
       setUserData({ token: token, user: user });
       localStorage.setItem("auth-token", token);
-      history.push(`/user/${user.id}`);
+      history.push(`/`);
     }
   }
 

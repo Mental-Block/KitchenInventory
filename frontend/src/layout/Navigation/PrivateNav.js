@@ -12,9 +12,9 @@ export default function PrivateNav() {
   const { searchValue, setSearchValue } = useContext(SearchContext);
 
   const pushPage = () => {
-    if (history.location.pathname !== `/user/${userData.user.id}/dashboard`) {
+    if (history.location.pathname !== `/dashboard`) {
       setSearchValue("")
-      history.push(`/user/${userData.user.id}/dashboard`);
+      history.push(`/dashboard`);
     }
   }
 
